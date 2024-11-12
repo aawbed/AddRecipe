@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Recipes</title>
+    <link rel="stylesheet" href="recipeform.css">
+</head>
+<body>
+    <h1>Recipe Collection</h1>
+    <a href="recipe.html" class="add-recipe-button">Add New Recipe</a>
+    <div id="recipe-container"></div>
+
+    <script>
+        // Function to fetch and display all recipes
+        async function loadRecipes() {
+            try {
+                const response = await fetch("http://localhost:3000/recipes");
+                const recipes = await response.json();
+
+                const recipeContainer = document.getElementById("recipe-container");
+                recipeContainer.innerHTML = recipes.map(recipe => `
+                    <div class="recipe">
+                        <h2>${recipe.name}</h2>
+                        <p><strong>Ingredients:</strong> ${recipe.ingredients}</p>
+                        <p><strong>Directions:</strong> ${recipe.directions}</p>
+                        ${recipe.owner ? `<p><strong>Owner:</strong> ${recipe.owner}</p>` : ""}
+                        ${recipe.image ? `<img src="${recipe.image}" alt="${recipe.name} image" style="width:200px; height:auto;">` : ""}
+                    </div>
+                `).join("");
+            } catch (error) {
+                console.error("Failed to load recipes:", error);
+                document.getElementById("recipe-container").innerHTML = "<p>Could not load recipes. Please try again later.</p>";
+            }
+        }
+
+        // Load all recipes when the page loads
+        loadRecipes();
+    </script>
+</body>
+</html>

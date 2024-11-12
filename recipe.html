@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe App</title>
+    <link rel="stylesheet" href="recipeform.css">
+</head>
+<body>
+    <h1>Recipe App</h1>
+    
+    <form id="recipe-form" enctype="multipart/form-data">
+        <label for="recipe-name">Recipe Name:</label>
+        <input type="text" id="recipe-name" name="recipe-name" required>
+        
+        <label for="recipe-ingredients">Ingredients:</label>
+        <input type="text" id="recipe-ingredients" name="recipe-ingredients" required>
+        
+        <label for="recipe-directions">Directions:</label>
+        <input type="text" id="recipe-directions" name="recipe-directions" required>
+        
+        <label for="recipe-image">Recipe Image:</label>
+        <input type="file" id="recipe-image" name="recipe-image" accept="image/*">
+        
+        <button type="submit">Add Recipe</button>
+    </form>
+
+    <!-- Button to View Recipe Collection -->
+    <a href="view-recipes.html" class="view-recipes-button">View Recipe Collection</a>
+
+    <script src="recipe.js"></script>
+</body>
+</html>
